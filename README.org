@@ -1,0 +1,16 @@
+#+title: ~k8s-multi-sniff~
+#+author: Rune Juhl Jacobsen
+
+Capture traffic from multiple K8s pods at once using [[https://github.com/eldadru/ksniff][ksniff]], automatically
+merging the resulting pcap files when done.
+
+* Usage
+#+begin_src sh
+./k8s-multi-sniff.sh       \
+  traefik                  \
+  '^traefik-[^-]+-[^-]+?$' \
+  'host 1.2.3.4 or host 2.3.4.1 or host 3.4.1.2 or host 4.1.2.3'
+#+end_src
+
+Send a ~SIGINT~ (~ctrl+c~) when done to stop capture. Outputs the resulting
+merged pcap file into ~$TMP~.
